@@ -1,0 +1,44 @@
+name: Issue Build Trigger
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  trigger-build:
+    # 可以添加一些检查来验证 issue 创建者是否有权限
+    if: contains(github.event.issue.title, '[BUILD]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Parse Issue Body
+        id: parse
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const body = context.payload.issue.body;
+            // 解析 issue 内容，期望格式如：
+            // application_id: com.example.reman
+            // api_url: https://api.example.com
+            // app_name: MyApp
+            const lines = body.split('\n');
+            const config = {};
+            lines.forEach(line => {
+              const [key, value] = line.split(':').map(s => s.trim());
+              if (key && value) {
+                config[key] = value;
+              }
+            });
+            core.setOutput('config', JSON.stringify(config));
+            
+      - name: Trigger Private Repo Build
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          repository: your-username/private-android-repo
+          event-type: build-app
+          client-payload: |
+            {
+              "issue_number": "${{ github.event.issue.number }}",
+              "issue_url": "${{ github.event.issue.html_url }}",
+              "config": ${{ steps.parse.outputs.config }}
+            }
