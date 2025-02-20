@@ -15,3 +15,6 @@ app_name: APP名称
 - api_url 为网站首页，*末尾不要带/*，例如 https://weixin.qq.com
 - app_name 为 APP 名称，例如 ReMan
 - 中间冒号为英文冒号，不要使用中文冒号
+- 标题需要带`[BUILD]`前缀
+- 请删除注释后再提交
+
