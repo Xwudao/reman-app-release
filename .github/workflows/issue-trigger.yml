@@ -22,7 +22,7 @@ jobs:
               if (colonIndex > -1) {
                 const key = line.substring(0, colonIndex).trim();
                 const value = line.substring(colonIndex + 1).trim();
-                if (key && value) {
+                if (key && value && /^[a-zA-Z_]+$/.test(key)) {
                   config[key] = value;
                 }
               }
