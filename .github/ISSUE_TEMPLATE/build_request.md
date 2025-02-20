@@ -1,7 +1,7 @@
 ---
-name: 构建请求
+name: build_request
 about: 使用此模板来提交一个构建请求。
-title: ''
+title: "[BUILD]这里填名称，随意"
 labels: build
 assignees: ''
 
