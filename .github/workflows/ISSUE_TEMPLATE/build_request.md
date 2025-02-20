@@ -1,7 +1,7 @@
 ---
 name: 构建请求
 about: 使用此模板来提交一个构建请求。
-title: '[BUILD]这里写名称'
+title: '[BUILD]这里写网站名称'
 labels: ['build']
 ---
 app_id: 这里填包名
