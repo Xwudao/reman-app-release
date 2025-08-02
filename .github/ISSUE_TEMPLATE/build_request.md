@@ -14,6 +14,7 @@ app_name: APP名称
 
 注意：
 
+- 标题中的`[BUILD]`不能删除
 - app_id 为包名，例如 com.tencent.mm
 - api_url 为网站首页，*末尾不要带/*，例如 https://weixin.qq.com
 - app_name 为 APP 名称，例如 ReMan
